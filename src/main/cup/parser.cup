@@ -53,8 +53,15 @@ terminal        IF, THEN, ELSE;
 terminal        WHILE, DO;
 terminal        LET, IN;
 
-non terminal program;
+non terminal Exp program;
+non terminal Exp exp;
 
 start with program;
 
-program ::= ;
+program ::=
+  exp:x              {: RESULT = x; :}
+;
+
+exp ::=
+  LITINT:x           {: RESULT = new ExpInt(new Integer(x)); :}
+;
